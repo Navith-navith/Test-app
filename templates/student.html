@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Student Management System</h1>
+    <form action="/add" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        <label for="subject1">Subject 1:</label>
+        <input type="number" id="subject1" name="subject1" required><br>
+        <label for="subject2">Subject 2:</label>
+        <input type="number" id="subject2" name="subject2" required><br>
+        <label for="subject3">Subject 3:</label>
+        <input type="number" id="subject3" name="subject3" required><br>
+        <label for="subject4">Subject 4:</label>
+        <input type="number" id="subject4" name="subject4" required><br>
+        <label for="subject5">Subject 5:</label>
+        <input type="number" id="subject5" name="subject5" required><br>
+        <button type="submit">Add Student</button>
+    </form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Subject 1</th>
+            <th>Subject 2</th>
+            <th>Subject 3</th>
+            <th>Subject 4</th>
+            <th>Subject 5</th>
+            <th>Percentage</th>
+            <th>Action</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>{{ student[4] }}</td>
+            <td>{{ student[5] }}</td>
+            <td>{{ student[6] }}</td>
+            <td>{{ student[7] }}</td>
+            <td>{{ ((student[3] + student[4] + student[5] + student[6] + student[7]) / 5) | round(2) }}%</td>
+            <td><a href="/delete/{{ student[0] }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
